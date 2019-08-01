@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.or.yi.project.dao.ProjectDao">
+
+	<select id="selectProjectList" resultType="Project">
+		select * from project order by serial_num desc
+	</select>
+	
+	<insert id="insertProject" parameterType="Project">
+		insert into project (project_name, project_content, start_date, end_date, project_progress) values (#{projectName}, #{projectContent}, #{startDate}, #{endDate}, #{projectProgress})
+	</insert>
+	
+	<select id="selectProjectByno" resultType="Project" parameterType="int">
+		select * from project where serial_num = #{serialNum}
+	</select>
+	
+	<update id="updateProject" parameterType="Project">
+		update project set project_name = #{projectName}, project_content = #{projectContent}, start_date = #{startDate}, end_date = #{endDate}, project_progress = #{projectProgress} where serial_num = #{serialNum}
+	</update>
+	
+	<delete id="deleteProject" parameterType="Project">
+		delete from project where serial_num = #{serialNum}
+	</delete>
+</mapper>
